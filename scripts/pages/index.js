@@ -1,41 +1,30 @@
+
+// La fonction getPhotographers permet de récupérer les données des photographes (le async await permet d'attendre que les données soient récupérées pour s'afficher) :
+
 async function getPhotographers() {
-    // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-    // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-    let photographers = [
-        {
-            "name": "Ma data test",
-            "id": 1,
-            "city": "Paris",
-            "country": "France",
-            "tagline": "Ceci est ma data test",
-            "price": 400,
-            "portrait": "account.png"
-        },
-        {
-            "name": "Autre data test",
-            "id": 2,
-            "city": "Londres",
-            "country": "UK",
-            "tagline": "Ceci est ma data test 2",
-            "price": 500,
-            "portrait": "account.png"
-        },
-    ]
+
+    await fetch("../data/photographers.json")
+        .then((res) => res.json())
+        .then((data) => (photographers = data.photographers));
     // et bien retourner le tableau photographers seulement une fois récupéré
-    return ({
-        photographers: [...photographers, ...photographers, ...photographers]
-    })
+    return {
+        photographers: [...photographers]
+    };
 }
+
+// La fonction displayData permet d'afficher le contenu de chaque photographe dans le HTML a l'intérieur de la balise photographer section
 
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
+        const cardPhotographer = photographerModel.displayCardPhotographer();
+        photographersSection.appendChild(cardPhotographer);
     });
 };
+
+
 
 async function init() {
     // Récupère les datas des photographes
@@ -49,3 +38,7 @@ init();
 ////////////////////////////////////////////////////
 
 // class photographe // objet 1 video && objet 2 image
+
+fetch("../data/photographers.json")
+    .then((res) => res.json())
+    .then((data) => console.log(data.photographers[0].portrait));
