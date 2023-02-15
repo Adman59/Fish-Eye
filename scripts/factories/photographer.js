@@ -16,7 +16,7 @@ function photographerFactory(data) {
 
         //Attribution de la data
         article.classList.add("card-photographer");
-        link.href = './pages/photographer.html?id=' + id;
+        link.href = './photographer.html?id=' + id;
         link.classList.add('card-photographer-link');
         link.setAttribute("aria-label", "Lien vers la page de " + name);
         img.setAttribute("src", picture);

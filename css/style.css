@@ -11,17 +11,12 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 90px;
+    margin-bottom: 2rem;
 }
 
-@media  screen and min-width(993px) {
-    h1 {
-        color: blue;
-    }
-}
 
 h1 {
     color: #901C1C;
@@ -33,27 +28,25 @@ h1 {
 
 .photographer_section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+    grid-template-columns: 1fr;
 }
 
 .photographer_section article {
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .photographer_section article a.card-photographer-link {
     display: inline-block;
-    transition: all 0.3s;
+    text-decoration: none;
 }
 
-.photographer_section article a.card-photographer-link:hover {
-    transform: scale(1.1);
-}
 
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    font-weight: 400;
+    margin: 0;
 }
 
 .photographer_section article img {
@@ -61,4 +54,50 @@ h1 {
     height: 200px;
     object-fit: cover;
     border-radius: 100%;
+    margin-bottom: 1rem;
+}
+
+.photographer_section article a.card-photographer-link:hover img {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.photographer_section article a.card-photographer-link:hover h2 {
+    color: #901C1C;
+}
+
+.photographer_section article .photographer-desc h3 {
+    font-size: 14px;
+    color:#901C1C;
+    font-weight: 400;
+    margin: 0.5rem 0 0.4rem;
+}
+
+.photographer_section article .photographer-desc p {
+    font-size: 12px;
+    margin: 0 0 0.4rem;
+}
+
+
+@media screen and (min-width: 600px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px 70px;
+    }
+
+}
+
+@media screen and (min-width: 993px) {
+
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 70px 70px;
+    }
+
 }
