@@ -20,7 +20,8 @@ async function displayData(photographers) {
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
         const cardPhotographer = photographerModel.displayCardPhotographer();
-        photographersSection.appendChild(cardPhotographer);
+        console.log(cardPhotographer)
+        photographersSection.insertAdjacentHTML('beforeend', cardPhotographer);
     });
 };
 
