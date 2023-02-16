@@ -40,6 +40,6 @@ init();
 
 // class photographe // objet 1 video && objet 2 image
 
-fetch("../data/photographers.json")
-    .then((res) => res.json())
-    .then((data) => console.log(data.photographers[0].portrait));
+// fetch("../data/photographers.json")
+//     .then((res) => res.json())
+//     .then((data) => console.log(data.photographers[0].portrait));
