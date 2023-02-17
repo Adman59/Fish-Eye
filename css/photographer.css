@@ -3,9 +3,38 @@
 }
 
 .photograph-header {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    /* gap: 32px 70px;  */
+    grid-template-areas: 
+        "photographer-img"
+        "profil-photographer"
+        "photographer-contact"; 
+    justify-items: center;
+    align-items: center;
     background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    padding: 2rem;
+}
+
+.photographer-img { 
+    grid-area: photographer-img;
+}
+
+.profil-photographer { 
+    grid-area: profil-photographer;
+    text-align: center;
+}
+
+.photographer-contact { 
+    grid-area: photographer-contact; 
+}
+
+.photographer-img img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 100%;
 }
 
 .contact_button {
@@ -20,6 +49,8 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+/*-----------------------------------------*/
 
 .modal {
     border-radius: 5px;
@@ -73,4 +104,42 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+
+/*-----------------------------------------*/
+
+
+@media screen and (min-width: 600px) {
+
+    .photograph-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr 1fr; 
+        gap: 32px 32px; 
+        grid-template-areas: 
+            "profil-photographer  photographer-img"
+            "photographer-contact photographer-img"
+    }
+
+}
+
+/*-----------------------------------------*/
+
+
+@media screen and (min-width: 993px) {
+
+    .photograph-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 1fr; 
+        gap: 32px 32px; 
+        grid-template-areas: 
+            "profil-photographer photographer-contact photographer-img"
+    }
+
+    .profil-photographer { 
+        text-align: left;
+    }
+
 }
