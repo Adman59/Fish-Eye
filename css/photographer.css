@@ -15,6 +15,7 @@
     align-items: center;
     background-color: #FAFAFA;
     padding: 2rem;
+    margin-bottom: 4rem;
 }
 
 .photographer-img { 
@@ -48,6 +49,34 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/*-----------------------------------------*/
+
+.medias-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 48%);
+    justify-content: space-between;
+}
+
+.media-photographer {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 2rem;
+}
+
+
+.media-photographer .media .media-thumbnail {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.media-photographer .media-description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*-----------------------------------------*/
@@ -122,6 +151,10 @@ form input {
             "photographer-contact photographer-img"
     }
 
+    .medias-section {
+        grid-template-columns: repeat(auto-fill, 30%);
+    }
+
 }
 
 /*-----------------------------------------*/
@@ -140,6 +173,10 @@ form input {
 
     .profil-photographer { 
         text-align: left;
+    }
+
+    .medias-section {
+        grid-template-columns: repeat(auto-fill, 23%);
     }
 
 }

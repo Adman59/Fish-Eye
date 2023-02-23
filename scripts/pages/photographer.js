@@ -5,13 +5,14 @@
 let params = (new URL(document.location)).searchParams;
 let photographer_id = params.get('id');
 let photographer;
+let media;
 
 console.log(params);
 console.log(photographer_id);
 
 //--------------------------------------------------------//
 
-async function getPhotographer() {
+function getPhotographer() {
     // Recuperation du fichier JSON en utilisant "fetch".
     return fetch('../data/photographers.json')
         .then((res) => res.json())
@@ -34,6 +35,27 @@ async function getPhotographer() {
 
 //--------------------------------------------------------//
 
+function getMedias() {
+    const sectionMedia = document.querySelector('.medias-section');
+
+    // Recuperation du fichier JSON en utilisant "fetch".
+    return fetch('../data/photographers.json')
+        .then((res) => res.json())
+        .then((data) => {
+            const filteredMedias = data.media.filter((media) => media.photographerId == photographer_id);
+            console.log(filteredMedias);
+            return filteredMedias;
+        })
+        .catch(function (err) {
+            // Une erreur est survenue
+            console.log(err)
+        });
+}
+
+
+
+//--------------------------------------------------------//
+
 // La fonction displayData permet d'afficher...
 // affichage de la section photographer_header
 async function displayData(photographer) {
@@ -47,11 +69,30 @@ async function displayData(photographer) {
 
 //--------------------------------------------------------//
 
+async function displayMedia(mediaArray) {
+    const gallery = document.querySelector('.medias-section');
+
+    try {
+        mediaArray.forEach((media) => {
+            const factory = new MediaFactory(media);
+            const mediaHtml = factory.createHtml();
+            gallery.innerHTML += mediaHtml;
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+//--------------------------------------------------------//
+
 async function init() {
     // Récupère les datas des photographes
     photographer = await getPhotographer();
+    media = await getMedias();
 
     displayData(photographer);
+    displayMedia(media);
 
 };
 
