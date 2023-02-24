@@ -69,6 +69,17 @@ async function displayData(photographer) {
 
 //--------------------------------------------------------//
 
+async function displayPrice(photographer) {
+    const encartPhotographer = document.getElementById("encart-tarif");
+    const encartPhotographerContent = photographerDetailFactory(photographer);
+    const userPrice = encartPhotographerContent.displayPricePhotographer();
+
+    encartPhotographer.insertAdjacentHTML('beforeend', userPrice);
+};
+
+
+//--------------------------------------------------------//
+
 async function displayMedia(mediaArray) {
     const gallery = document.querySelector('.medias-section');
 
@@ -92,6 +103,7 @@ async function init() {
     media = await getMedias();
 
     displayData(photographer);
+    displayPrice(photographer);
     displayMedia(media);
 
 };

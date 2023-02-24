@@ -24,14 +24,14 @@ class Img {
         return `
         <article class="media-photographer">
           <div class="media">
-            <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.alt}" class="media-thumbnail" tabindex="5"/>
+            <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.alt}" class="media-thumbnail" />
           </div>
          <div class="media-description">
               <h3>${this.title}</h3>
-            <div class="like">
-                <span class="numbers">${this.likes}</span>
-                <span class="hearts" data-like="false" tabindex="5">
-                  <i class="fas fa-heart" alt="coeur" aria-label="ajoute ou supprime le like au clic">
+            <div class="like-media">
+                <span class="like-numbers">${this.likes}</span>
+                <span class="like-icon" data-like="false" >
+                  <i class="fas fa-heart" aria-label="likes">
                   </i>
                 </span> 
             </div>
@@ -56,14 +56,14 @@ class Video {
         return `
         <article class="media-photographer">
             <div class="media">
-                    <video src="./assets/images/${this.photographerId}/${this.video}" controls type="video/mp4" alt="${this.alt}" class="media-thumbnail" tabindex="5"> </video>
+                    <video src="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.alt}" class="media-thumbnail" ></video>
             </div>
             <div class="media-description">
-                <h3>${this.title}</h3>
-                <div class="like">
-                    <span class="numbers">${this.likes}</span>
-                    <span class="hearts" data-like="false" tabindex="5">
-                    <i class="fas fa-heart" alt="coeur" aria-label="ajoute ou supprime le like au clic">
+                <h3>${this.title}</h3> 
+                <div class="like-media">
+                    <span class="like-numbers">${this.likes}</span>
+                    <span class="like-icon" data-like="false" >
+                    <i class="fas fa-heart" aria-label="likes">
                     </i>
                     </span>
                 </div>
