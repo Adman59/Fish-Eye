@@ -92,7 +92,36 @@ async function displayMedia(mediaArray) {
     } catch (error) {
         console.log(error);
     }
+
+    // Affichage de la Lightbox
+
+    const lightbox = document.querySelector('.lightbox');
+    const image = lightbox.querySelector('.lightbox-frame img');
+    console.log(image);
+
+    const links = document.querySelectorAll(".media-photographer .media");
+
+    console.log(links);
+
+
+    // On ajoute l'écouteur click sur les liens
+    for (let link of links) {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            // On ajoute l'image du lien cliqué dans la lightbox
+            image.src = e.currentTarget.href;
+
+            // On affiche la lightbox
+            displayLightbox();
+        })
+    }
 }
+
+
+//--------------------------------------------------------//
+
+
+
 
 
 //--------------------------------------------------------//
