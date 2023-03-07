@@ -40,21 +40,13 @@ const message = document.getElementById("message");
 sendButton.addEventListener("click", (e) => {
     e.preventDefault(); // empêche le formulaire d'être soumis
 
-    console.log(firstName.value);
-    console.log(lastName.value);
-    console.log(email.value);
-    console.log(message.value);
-})
+    const formData = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        message: message.value
+    };
 
+    console.log(formData);
 
-// Lightbox
-
-const lightbox = document.querySelector(".lightbox")
-
-function displayLightbox() {
-    lightbox.style.display = "block";
-}
-
-function closeLightbox() {
-    lightbox.style.display = "none";
-}
+});

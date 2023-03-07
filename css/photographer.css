@@ -93,6 +93,13 @@
 
 .media-photographer .media-description .like-icon {
     color: #911C1C;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.media-photographer .media-description .like-icon:hover,
+.media-photographer .media-description .like-icon[data-like="true"] {
+    color: #D3573C;
 }
 
 /*-----------------------------------------*/
@@ -106,10 +113,11 @@
     position: fixed;
     bottom: 0;
     right: 5%;
+    width: 300px;
 }
 
 #encart-tarif .photographer-price,
-#encart-tarif .like-media {
+#encart-tarif .total-like-media {
     font-size: 1.5rem;
     font-weight: 500;
     margin: 1rem 1.5rem;
@@ -213,10 +221,11 @@ form input {
 }
 
 .lightbox-frame {
-    width: 90%;
-    max-width: 1200px;
+    width: max-content;
+    /* max-width: 1200px; */
+    max-width: 70vw;
     /* height: auto; */
-    max-height: 900px;
+    max-height: 80vh;
     margin: auto;
     border-radius: 0.5rem;
     position: fixed;
@@ -225,12 +234,19 @@ form input {
     transform: translate(-50%, -50%);
 }
 
-.lightbox-frame img {
+.lightbox-frame img,
+.lightbox-frame video {
     width: 100%;
     height: 100%;
-    max-height: 900px;
+    max-height: 80vh;
     object-fit: scale-down;
     border-radius: 0.5rem;
+}
+
+.lightbox-frame .media-lightbox {
+    width: fit-content;
+    margin: auto;
+    position: relative;
 }
 
 .lightbox #lightbox-close-btn {
@@ -247,6 +263,32 @@ form input {
     fill: #911C1C;
 }
 
+.lightbox #previous,
+.lightbox #next {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: #911C1C;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.lightbox #previous {
+    left: -4rem;
+}
+
+.lightbox #next {
+    right: -4rem;
+}
+
+.hide {
+    display: none;
+}
+
+.lightbox .title-media {
+    font-size: 1.5rem;
+    color: #911C1C;
+}
 
 /*-----------------------------------------*/
 

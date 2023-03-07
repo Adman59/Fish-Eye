@@ -36,7 +36,6 @@ function getPhotographer() {
 //--------------------------------------------------------//
 
 function getMedias() {
-    const sectionMedia = document.querySelector('.medias-section');
 
     // Recuperation du fichier JSON en utilisant "fetch".
     return fetch('../data/photographers.json')
@@ -51,8 +50,6 @@ function getMedias() {
             console.log(err)
         });
 }
-
-
 
 //--------------------------------------------------------//
 
@@ -82,46 +79,188 @@ async function displayPrice(photographer) {
 
 async function displayMedia(mediaArray) {
     const gallery = document.querySelector('.medias-section');
+    const mediaLightboxFrame = document.querySelector(".lightbox-frame");
+    console.log(mediaLightboxFrame);
 
     try {
         mediaArray.forEach((media) => {
             const factory = new MediaFactory(media);
             const mediaHtml = factory.createHtml();
             gallery.innerHTML += mediaHtml;
+            // mediaLightboxFrame.innerHTML += factory.createMediaLightbox();
+            const mediaLightboxHtml = factory.createMediaLightbox();
+            mediaLightboxFrame.innerHTML += mediaLightboxHtml;
+
         });
     } catch (error) {
         console.log(error);
     }
-
-    // Affichage de la Lightbox
-
-    const lightbox = document.querySelector('.lightbox');
-    const image = lightbox.querySelector('.lightbox-frame img');
-    console.log(image);
-
-    const links = document.querySelectorAll(".media-photographer .media");
-
-    console.log(links);
-
-
-    // On ajoute l'écouteur click sur les liens
-    for (let link of links) {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            // On ajoute l'image du lien cliqué dans la lightbox
-            image.src = e.currentTarget.href;
-
-            // On affiche la lightbox
-            displayLightbox();
-        })
-    }
 }
 
+//--------------------------------------------------------//
+
+// Lightbox
+
+const addEventLightbox = async () => {
+    const lightboxCloseBtn = document.getElementById("lightbox-close-btn");
+    const mediaGallery = document.querySelectorAll(".media");
+    const mediaLightbox = document.querySelectorAll(".media-lightbox");
+    const lightbox = document.querySelector(".lightbox");
+    const previous = document.getElementById("previous");
+    const next = document.getElementById("next");
+    let index = 0;
+
+
+    function displayLightbox() {
+        lightbox.style.display = "block";
+        lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = "none";
+        lightbox.setAttribute("aria-hidden", "true");
+        mediaLightbox[index].classList.toggle("hide");
+    }
+
+    function goToNext() {
+        mediaLightbox[index].classList.toggle("hide");
+
+        if (index == mediaLightbox.length - 1) {
+            mediaLightbox[0].classList.toggle("hide");
+            index = 0;
+        } else {
+            mediaLightbox[index + 1].classList.toggle("hide");
+            index++;
+        }
+    }
+    function goToPrevious() {
+        mediaLightbox[index].classList.toggle("hide");
+        console.log(index);
+
+        if (index <= 0) {
+            console.log("ok");
+            index = mediaLightbox.length - 1;
+            mediaLightbox[index].classList.toggle("hide");
+        } else {
+            mediaLightbox[index - 1].classList.toggle("hide");
+            index--;
+        }
+    }
+
+    //keyboard events
+
+    document.addEventListener("keyup", function (e) {
+        if (e.key === "ArrowRight") {
+            goToNext();
+        } else if (e.key === "ArrowLeft") {
+            goToPrevious();
+        } else if (e.key === "Escape") {
+            closeLightbox();
+        } else if (e.key === "Enter") {
+            e.preventDefault();
+            startLightbox(e);
+        }
+    });
+
+
+    function startLightbox(e) {
+        displayLightbox();
+        const clickedMedia = e.target.attributes.src.nodeValue;
+        console.log(clickedMedia);
+
+        for (let i = 0; i < mediaLightbox.length; i++) {
+            const mediaSrc = mediaLightbox[i].childNodes[1].attributes.src.nodeValue;
+
+            if (clickedMedia === mediaSrc) {
+                mediaLightbox[i].classList.toggle("hide");
+                index = i;
+            }
+        }
+    }
+
+    // J'ai un problème quand je veux naviguer au clavier dans les médias et que je tape sur entrée pour afficher la modal //
+
+
+    mediaGallery.forEach((media) => {
+        media.addEventListener("click", (e) => {
+            e.preventDefault();
+            startLightbox(e);
+            // media.addEventListener();
+        })
+    });
+
+    //close lightbox//
+    lightboxCloseBtn.addEventListener("click", closeLightbox);
+
+    next.addEventListener("click", goToNext);
+
+    previous.addEventListener("click", goToPrevious);
+
+}
 
 //--------------------------------------------------------//
 
 
+function getMedias() {
 
+    // Recuperation du fichier JSON en utilisant "fetch".
+    return fetch('../data/photographers.json')
+        .then((res) => res.json())
+        .then((data) => {
+            const filteredMedias = data.media.filter((media) => media.photographerId == photographer_id);
+            console.log(filteredMedias);
+            return filteredMedias;
+        })
+        .catch(function (err) {
+            // Une erreur est survenue
+            console.log(err)
+        });
+}
+
+// Likes
+
+
+const addLikes = async () => {
+    const likesBtn = document.querySelectorAll(".like-icon");
+    console.log(likesBtn);
+    let numbersLikes = document.querySelectorAll(".like-numbers");
+    let totalLikes = document.querySelector(".total-like-numbers");
+
+    const filteredMedias = await getMedias();
+
+    //Ajouter un like sur un media
+    likesBtn.forEach((button, index) => {
+        button.addEventListener("click", function () {
+            let clickedBtn = button.getAttribute("data-like");
+
+            // Si data-like = false donc n'a pas été cliqué alors +1
+            if (clickedBtn == "false") {
+                filteredMedias[index].likes += 1;
+                numbersLikes[index].innerHTML = filteredMedias[index].likes;
+                button.setAttribute("data-like", "true");
+                totalLikes.innerHTML = parseInt(totalLikes.innerHTML) + 1;
+            } else { // Si data-like = true donc a déjà été cliqué alors -1
+                filteredMedias[index].likes -= 1;
+                numbersLikes[index].innerHTML = filteredMedias[index].likes;
+                button.setAttribute("data-like", "false");
+                totalLikes.innerHTML = parseInt(totalLikes.innerHTML) - 1;
+            }
+        })
+    })
+
+    //Nombres de likes total du photographe
+    let num = 0;
+
+    for (i = 0; i < numbersLikes.length; i++) {
+        num += parseInt(numbersLikes[i].innerText);
+    }
+    totalLikes.innerHTML = num;
+};
+
+//--------------------------------------------------------//
+
+const select = document.querySelector('.bloc-filters');
+console.log(select);
 
 
 //--------------------------------------------------------//
@@ -134,7 +273,8 @@ async function init() {
     displayData(photographer);
     displayPrice(photographer);
     displayMedia(media);
-
+    addEventLightbox();
+    addLikes();
 };
 
 //--------------------------------------------------------//

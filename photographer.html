@@ -22,6 +22,18 @@
       <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
     </div>
 
+    <div class="bloc-filters">
+      <label for="Trier par filtre">Trier par</label>
+      <select name="filters" class="filter-select" aria-label="select filter" tabindex="4">
+        <optgroup size="16">
+          <option class="h4" value="">Selectionner…</option>
+          <option class="h4" value="likes">Popularité</option>
+          <option class="h4" value="date">Date</option>
+          <option class="h4" value="title">Titre</option>
+        </optgroup>
+      </select>
+    </div>
+
     <section class="medias-section">
 
     </section>
@@ -31,18 +43,22 @@
     </div>
   </main>
 
-  <div class="lightbox">
+  <div class="lightbox" aria-label="image closeup view">
     <div class="lightbox-frame">
-
-      <button id="lightbox-close-btn" onclick="closeLightbox()">
+      <div id="previous">
+        <i class="fas fa-chevron-left" alt="Previous image" role="afficher le média précédent"></i>
+      </div>
+      <!--contenu HTML de la factory-->
+      <div id="next">
+        <i class="fas fa-chevron-right" alt="Next image" role="afficher le média suivant"></i>
+      </div>
+      <button id="lightbox-close-btn">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
             fill="white" />
         </svg>
       </button>
-      <img src="" alt="">
-      <!-- <video src="" alt=""></video> -->
     </div>
   </div>
 

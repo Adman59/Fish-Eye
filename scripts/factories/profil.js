@@ -28,8 +28,8 @@ function photographerDetailFactory(data) {
   function displayPricePhotographer() {
     let encarttarif =
       `
-      <div class="like-media">
-        <span class="like-numbers">${likes}</span>
+      <div class="total-like-media">
+        <span class="total-like-numbers"></span>
         <span class="like-icon" data-like="false" >
           <i class="fas fa-heart" aria-label="likes">
           </i>
