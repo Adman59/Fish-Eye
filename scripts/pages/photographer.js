@@ -33,6 +33,7 @@ function getPhotographer() {
         });
 }
 
+
 //--------------------------------------------------------//
 
 function getMedias() {
@@ -60,6 +61,11 @@ async function displayData(photographer) {
     const photographersHeader = document.querySelector(".photograph-header");
     const photographerDetails = photographerDetailFactory(photographer);
     const userCardDOM = photographerDetails.displayHeaderPhotographer();
+
+    // Ajout de la modal contact correspondante
+    const modalContact = document.querySelector(".modal");
+    const userModalDOM = photographerDetails.displayModalPhotographer();
+    modalContact.insertAdjacentHTML('beforeend', userModalDOM);
 
     photographersHeader.insertAdjacentHTML('beforeend', userCardDOM);
 };
@@ -159,6 +165,7 @@ const addEventLightbox = async () => {
         } else if (e.key === "Enter") {
             e.preventDefault();
             startLightbox(e);
+            // pourquoi ça ne fonctionne pas ?
         }
     });
 

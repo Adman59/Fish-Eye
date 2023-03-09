@@ -24,7 +24,7 @@
 
     <form class="form-filters">
       <label for="filters">Trier par</label>
-      <select name="filters-select" class="filter-select" id="filters" aria-label="select filter">
+      <select name="filters-select" class="filter-select" aria-labelledby="Order by">
         <option class="filter" value="popularité">Popularité</option>
         <option class="filter" value="date">Date</option>
         <option class="filter" value="titre">Titre</option>
@@ -50,7 +50,7 @@
       <div id="next">
         <i class="fas fa-chevron-right" alt="Next image" role="afficher le média suivant"></i>
       </div>
-      <button id="lightbox-close-btn">
+      <button id="lightbox-close-btn" alt="Close dialog">
         <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
@@ -61,11 +61,11 @@
   </div>
 
 
-  <div id="contact_modal" aria-hidden="true" role="dialog" aria-describedby="Fenêtre du formulaire de contact">
+  <div id="contact_modal" aria-hidden="true" role="dialog" aria-labelledby="Contact me">
     <div class="modal">
 
-      <header>
-        <h2>Contactez-moi</h2>
+      <!-- <header>
+        <h2>Contactez-moi <span id="namePhotographer"></span></h2>
         <button id="modal-close-btn" onclick="closeModal()">
           <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -73,30 +73,30 @@
               fill="white" />
           </svg>
         </button>
-      </header>
+      </header> -->
 
       <form class="contact-form">
         <div class="form-field">
           <label for="firstname">Prénom</label>
-          <input type="text" id="firstname" />
+          <input type="text" id="firstname" aria-labelledby="First name" />
         </div>
 
         <div class="form-field">
           <label for="lastname">Nom</label>
-          <input type="text" id="lastname" />
+          <input type="text" id="lastname" aria-labelledby="Last name" />
         </div>
 
         <div class="form-field">
           <label for="email">Email</label>
-          <input type="email" id="email" />
+          <input type="email" id="email" aria-labelledby="Email" />
         </div>
 
         <div class="form-field">
           <label for="message">Votre message</label>
-          <textarea id="message" cols="30" rows="10"></textarea>
+          <textarea id="message" cols="30" rows="10" aria-labelledby="Your message"></textarea>
         </div>
 
-        <button class="contact_button" type="submit">Envoyer</button>
+        <button class="contact_button" type="submit" aria-label="Send">Envoyer</button>
       </form>
 
     </div>

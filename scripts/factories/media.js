@@ -18,16 +18,15 @@ class Img {
         this.likes = data.likes;
         this.tags = data.tags;
         this.date = data.date;
-        this.alt = data.alt;
     }
     createHtml() {
         return `
         <article class="media-photographer">
-          <a href="./assets/images/${this.photographerId}/${this.image}" alt="${this.alt}" class="media">
+          <a href="./assets/images/${this.photographerId}/${this.image}" alt="${this.title}" class="media">
             <img src="./assets/images/${this.photographerId}/${this.image}" alt="${this.title}" class="media-thumbnail" />
           </a>
          <div class="media-description">
-              <h3>${this.title}</h3>
+              <h2>${this.title}</h2>
             <div class="like-media">
                 <span class="like-numbers">${this.likes}</span>
                 <span class="like-icon" data-like="false" >
@@ -59,16 +58,15 @@ class Video {
         this.likes = data.likes;
         this.tags = data.tags;
         this.date = data.date;
-        this.alt = data.alt;
     }
     createHtml() {
         return `
         <article class="media-photographer">
-            <a href="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.alt}" class="media">
-                <video src="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.alt}" class="media-thumbnail" ></video>
+            <a href="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.title}" class="media">
+                <video src="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.title}" class="media-thumbnail" ></video>
             </a>
             <div class="media-description">
-                <h3>${this.title}</h3> 
+                <h2>${this.title}</h2> 
                 <div class="like-media">
                     <span class="like-numbers">${this.likes}</span>
                     <span class="like-icon" data-like="false" >

@@ -9,7 +9,7 @@ function photographerDetailFactory(data) {
     let headerphotographer =
       `
         <div class="profil-photographer">
-          <h1>${name}</h1>
+          <h1 class="profil-photographer-h1">${name}</h1>
           <p class="photogapher-location">${city}, ${country}</p>
           <p class="photogapher-tagline">${tagline}</p>
         </div>
@@ -40,6 +40,25 @@ function photographerDetailFactory(data) {
     return encarttarif;
   }
 
-  return { name, portrait, city, country, tagline, price, id, picture, likes, displayHeaderPhotographer, displayPricePhotographer };
+  function displayModalPhotographer() {
+    let modalPhotographer =
+      `
+        <header>
+            <h2>Contactez-moi <span id="namePhotographer">${name}</span></h2>
+            <button id="modal-close-btn" onclick="closeModal()" aria-label="Close contact form">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
+                fill="white" />
+            </svg>
+            </button>
+        </header>
+
+        `
+      ;
+    return (modalPhotographer);
+  }
+
+  return { name, portrait, city, country, tagline, price, id, picture, likes, displayHeaderPhotographer, displayPricePhotographer, displayModalPhotographer };
 }
 
