@@ -22,17 +22,15 @@
       <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
     </div>
 
-    <div class="bloc-filters">
-      <label for="Trier par filtre">Trier par</label>
-      <select name="filters" class="filter-select" aria-label="select filter" tabindex="4">
-        <optgroup size="16">
-          <option class="h4" value="">Selectionner…</option>
-          <option class="h4" value="likes">Popularité</option>
-          <option class="h4" value="date">Date</option>
-          <option class="h4" value="title">Titre</option>
-        </optgroup>
+    <form class="form-filters">
+      <label for="filters">Trier par</label>
+      <select name="filters-select" class="filter-select" id="filters" aria-label="select filter">
+        <option class="filter" value="popularité">Popularité</option>
+        <option class="filter" value="date">Date</option>
+        <option class="filter" value="titre">Titre</option>
       </select>
-    </div>
+    </form>
+
 
     <section class="medias-section">
 

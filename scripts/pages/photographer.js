@@ -219,7 +219,6 @@ function getMedias() {
 
 // Likes
 
-
 const addLikes = async () => {
     const likesBtn = document.querySelectorAll(".like-icon");
     console.log(likesBtn);
@@ -259,8 +258,33 @@ const addLikes = async () => {
 
 //--------------------------------------------------------//
 
-const select = document.querySelector('.bloc-filters');
-console.log(select);
+// Likes
+
+const sortMedias = async () => {
+    const select = document.querySelector('.filter-select'); // changer la classe en filter-select
+    const gallery = document.querySelector('.medias-section');
+
+    let medias = await getMedias();
+
+    select.addEventListener('change', (e) => { // changer l'événement en change
+        switch (select.value) { // utiliser select.value plutôt que e.target.innerText
+            case 'popularité': // changer le value de l'option
+                medias.sort((a, b) => b.likes - a.likes);
+                break;
+            case 'date':
+                medias.sort((a, b) => new Date(b.date) - new Date(a.date));
+                break;
+            case 'titre':
+                medias.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            default:
+                break;
+        }
+
+        gallery.innerHTML = '';
+        displayMedia(medias);
+    });
+};
 
 
 //--------------------------------------------------------//
@@ -275,6 +299,7 @@ async function init() {
     displayMedia(media);
     addEventLightbox();
     addLikes();
+    sortMedias();
 };
 
 //--------------------------------------------------------//
