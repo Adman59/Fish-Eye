@@ -27,8 +27,8 @@ class Img {
           </a>
          <div class="media-description">
               <h2>${this.title}</h2>
-            <div class="like-media">
-                <span class="like-numbers">${this.likes}</span>
+            <div class="like-media" onclick="addLikes(${this.id})">
+                <span class="like-numbers" >${this.likes}</span>
                 <span class="like-icon" data-like="false" >
                   <i class="fas fa-heart" aria-label="likes">
                   </i>
@@ -62,8 +62,8 @@ class Video {
     createHtml() {
         return `
         <article class="media-photographer">
-            <a href="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.title}" class="media">
-                <video src="./assets/images/${this.photographerId}/${this.video}" controls auto type="video/mp4" alt="${this.title}" class="media-thumbnail" ></video>
+            <a href="./assets/images/${this.photographerId}/${this.video}"  auto type="video/mp4" alt="${this.title}" class="media">
+                <video src="./assets/images/${this.photographerId}/${this.video}"  auto type="video/mp4" alt="${this.title}" class="media-thumbnail" ></video>
             </a>
             <div class="media-description">
                 <h2>${this.title}</h2> 

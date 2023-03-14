@@ -22,14 +22,60 @@
       <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
     </div>
 
-    <form class="form-filters">
+    <!-- <form class="form-filters">
       <label for="filters">Trier par</label>
       <select name="filters-select" class="filter-select" aria-labelledby="Order by">
         <option class="filter" value="popularité">Popularité</option>
         <option class="filter" value="date">Date</option>
         <option class="filter" value="titre">Titre</option>
       </select>
-    </form>
+    </form> -->
+
+    <!-- <div class="filter-select">
+      <label>Trier par</label>
+      <div id="filter" role="button">
+        <div class="first-select-and-chevron">
+          <p data-value="popularité" class="select-input active" tabindex="0" aria-label="filtrer par popularité">
+            Popularité</p>
+          <span id="chevrons-container" tabindex="0" aria-label="Ouvrir menu filtrer par" aria-haspopup="true"
+            role="listbox">
+            <i class="fas fa-chevron-down" alt="Close select"></i>
+            <i class="fas fa-chevron-up no-show" alt="Open select"></i>
+          </span>
+        </div>
+        <p data-value="date" class="select-input no-display-input-select" tabindex="0" aria-label="filtrer par date">
+          Date</p>
+        <p data-value="titre" class="select-input no-display-input-select" tabindex="0" aria-label="filtrer par titre">
+          Titre</p>
+      </div>
+    </div> -->
+
+    <div class="bloc-filters">
+
+      <label class="selectFilter">Trier par</label>
+
+      <div class="filter-select select">
+        <input type="radio" name="option">
+        <i class="fas fa-chevron-down toggle icon icon-arrow-down" alt="Close select"></i>
+        <i class="fas fa-chevron-up toggle icon icon-arrow-up" alt="Open select"></i>
+
+        <label class="option">
+          <input type="radio" name="option" checked>
+          <span class="title">Popularité</span>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="option">
+          <span class="title">Date</span>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="option">
+          <span class="title">Titre</span>
+        </label>
+      </div>
+
+    </div>
 
 
     <section class="medias-section">

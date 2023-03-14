@@ -86,7 +86,6 @@ async function displayPrice(photographer) {
 async function displayMedia(mediaArray) {
     const gallery = document.querySelector('.medias-section');
     const mediaLightboxFrame = document.querySelector(".lightbox-frame");
-    console.log(mediaLightboxFrame);
 
     try {
         mediaArray.forEach((media) => {
@@ -98,6 +97,7 @@ async function displayMedia(mediaArray) {
             mediaLightboxFrame.innerHTML += mediaLightboxHtml;
 
         });
+        addLikes()
     } catch (error) {
         console.log(error);
     }
@@ -226,75 +226,96 @@ function getMedias() {
 
 // Likes
 
-const addLikes = async () => {
-    const likesBtn = document.querySelectorAll(".like-icon");
-    console.log(likesBtn);
+// J'appele la fonction addLikes directement dans le DOM dans medias.js pour récupérer l'id
+
+const addLikes = async (id) => {
+    const likeIcons = document.querySelectorAll('.like-icon');
+
+    likeIcons.forEach((likeIcon) => {
+        likeIcon.addEventListener('click', function () {
+            const likeNumber = likeIcon.parentElement.querySelector('.like-numbers');
+            let totalLikes = document.querySelector(".total-like-numbers");
+            let num = parseInt(totalLikes.innerHTML);
+
+            if (likeIcon.dataset.like === 'true') {
+                // Retirer le like
+                likeIcon.dataset.like = 'false';
+                likeNumber.innerHTML = parseInt(likeNumber.innerHTML) - 1;
+                num -= 1;
+            } else {
+                // Ajouter un like
+                likeIcon.dataset.like = 'true';
+                likeIcon.querySelector('i').classList.remove('far');
+                likeNumber.innerHTML = parseInt(likeNumber.innerHTML) + 1;
+                num += 1;
+            }
+
+            totalLikes.innerHTML = num;
+        });
+    });
+
+    //Nombres de likes total du photographe
+
     let numbersLikes = document.querySelectorAll(".like-numbers");
     let totalLikes = document.querySelector(".total-like-numbers");
 
-    const filteredMedias = await getMedias();
-
-    //Ajouter un like sur un media
-    likesBtn.forEach((button, index) => {
-        button.addEventListener("click", function () {
-            let clickedBtn = button.getAttribute("data-like");
-
-            // Si data-like = false donc n'a pas été cliqué alors +1
-            if (clickedBtn == "false") {
-                filteredMedias[index].likes += 1;
-                numbersLikes[index].innerHTML = filteredMedias[index].likes;
-                button.setAttribute("data-like", "true");
-                totalLikes.innerHTML = parseInt(totalLikes.innerHTML) + 1;
-            } else { // Si data-like = true donc a déjà été cliqué alors -1
-                filteredMedias[index].likes -= 1;
-                numbersLikes[index].innerHTML = filteredMedias[index].likes;
-                button.setAttribute("data-like", "false");
-                totalLikes.innerHTML = parseInt(totalLikes.innerHTML) - 1;
-            }
-        })
-    })
-
-    //Nombres de likes total du photographe
     let num = 0;
 
     for (i = 0; i < numbersLikes.length; i++) {
         num += parseInt(numbersLikes[i].innerText);
     }
+
     totalLikes.innerHTML = num;
 };
+
 
 //--------------------------------------------------------//
 
 // Likes
 
 const sortMedias = async () => {
-    const select = document.querySelector('.filter-select'); // changer la classe en filter-select
+    const select = document.querySelector('.filter-select');
+    const options = select.querySelectorAll('label.option');
     const gallery = document.querySelector('.medias-section');
 
     let medias = await getMedias();
 
-    select.addEventListener('change', (e) => { // changer l'événement en change
-        switch (select.value) { // utiliser select.value plutôt que e.target.innerText
-            case 'popularité': // changer le value de l'option
-                medias.sort((a, b) => b.likes - a.likes);
-                break;
-            case 'date':
-                medias.sort((a, b) => new Date(b.date) - new Date(a.date));
-                break;
-            case 'titre':
-                medias.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            default:
-                break;
-        }
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            switch (option.querySelector('span.title').textContent) {
+                case 'Popularité':
+                    medias.sort((a, b) => b.likes - a.likes);
+                    break;
+                case 'Date':
+                    medias.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    break;
+                case 'Titre':
+                    medias.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                default:
+                    break;
+            }
 
-        gallery.innerHTML = '';
-        displayMedia(medias);
+            gallery.innerHTML = '';
+            displayMedia(medias);
+
+            // Change la classe CSS de l'option sélectionnée pour appliquer les styles appropriés
+            options.forEach(filterChecked => {
+                if (filterChecked === option) {
+                    filterChecked.classList.add('active');
+                } else {
+                    filterChecked.classList.remove('active');
+                }
+            });
+
+        });
     });
+
 };
 
 
 //--------------------------------------------------------//
+
 
 async function init() {
     // Récupère les datas des photographes
@@ -304,9 +325,9 @@ async function init() {
     displayData(photographer);
     displayPrice(photographer);
     displayMedia(media);
+    sortMedias(media);
+    addLikes(media);
     addEventLightbox();
-    addLikes();
-    sortMedias();
 };
 
 //--------------------------------------------------------//
