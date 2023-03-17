@@ -1,103 +1,151 @@
 @import url("photographer.css");
 
+/* ---- Dans ce fichier vous trouverez le CSS relatifs aux éléments suivants: ----
+    1- Style Général
+    2- Div photographe page d'accueil
+    3- Système de Like
+    4- Boutons du site 
+*/
+
+/*-----------------------------------------------------------*/
+
+/* 1- Style générale du site. */
 body {
     font-family: "DM Sans", sans-serif;
-    margin: 0;
-    width: 90%;
-    max-width: 1400px;
-    margin: auto;
+    margin: 0px;
 }
 
 
 header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    margin: 2rem 0;
+    height: 90px;
 }
 
-
 h1 {
+    color: #D3573C;
+    margin-right: 100px;
+}
+
+a {
+    text-decoration: none;
+}
+
+h3 {
     color: #901C1C;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+article h2,
+article h3,
+article .tagline,
+article .price {
+    margin: 2px !important;
+}
+
+.tagline {
+    font-size: 10px;
+    color: black;
+}
+
+.price {
+    color: #757575;
+    font-weight: 400;
+    font-size: 9px;
 }
 
 .logo {
     height: 50px;
+    margin-left: 100px;
 }
 
+.video {
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 2- Style apporté à la div des photographes sur la page d'accueil */
 .photographer_section {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
 }
 
 .photographer_section article {
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    margin-bottom: 2rem;
 }
-
-.photographer_section article a.card-photographer-link {
-    display: inline-block;
-    text-decoration: none;
-}
-
 
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
     font-weight: 400;
-    margin: 0;
 }
 
 .photographer_section article img {
-    width: 200px;
     height: 200px;
+    width: 200px;
+    border-radius: 50%;
     object-fit: cover;
-    border-radius: 100%;
-    margin-bottom: 1rem;
 }
 
-.photographer_section article a.card-photographer-link:hover img {
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+/*-----------------------------------------------------------*/
+
+/* 3- Style apporté au système de like du site. */
+.likes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.photographer_section article a.card-photographer-link:hover h2 {
-    color: #901C1C;
+.heart {
+    cursor: pointer;
 }
 
-.photographer_section article .photographer-desc h3 {
-    font-size: 14px;
-    color:#901C1C;
-    font-weight: 400;
-    margin: 0.5rem 0 0.4rem;
+.heartliked {
+    opacity: 40%;
 }
 
-.photographer_section article .photographer-desc p {
-    font-size: 12px;
-    margin: 0 0 0.4rem;
+.heart,
+.heart2 {
+    width: 19px !important;
+    height: 19px !important;
 }
 
+/*-----------------------------------------------------------*/
 
-@media screen and (min-width: 600px) {
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .photographer_section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 70px 70px;
-    }
-
+/* 4- Style apporté aux différents boutons du site */
+.contact_button,
+.send_button,
+#filter {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-@media screen and (min-width: 993px) {
-
-    .photographer_section {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 70px 70px;
-    }
-
+.contact_button:hover,
+.contact_button:focus,
+.send_button:hover {
+    background-color: #DB8876;
+    color: black;
 }
+
+.send_button:hover {
+    border: 2px solid white;
+}
+
+/*-----------------------------------------------------------*/

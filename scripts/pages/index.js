@@ -1,45 +1,48 @@
+/* ---- Ce fichier comporte les éléments nécessaire à l'affichage des éléments sur la page d'accueil ainsi que le header de la page d'un photographe. ---- */
 
-// La fonction getPhotographers permet de récupérer les données des photographes (le async await permet d'attendre que les données soient récupérées pour s'afficher) :
+document.addEventListener("DOMContentLoaded", function () {
 
-async function getPhotographers() {
+    /**
+     * Création d'une fonction principale "main" qui va appeler les autres fonctions.
+     * @async
+     * @function [<main>] 
+     */
+    async function main() {
 
-    await fetch("../data/photographers.json")
-        .then((res) => res.json())
-        .then((data) => (photographers = data.photographers));
-    // et bien retourner le tableau photographers seulement une fois récupéré
-    return {
-        photographers: [...photographers]
+        const { photographers } = await getPhotographers(); // Varible qui attend de recevoir les données des photographes.
+        displayData(photographers); // Appel de la fonction displayData avec en paramètre les données reçus.
     };
-}
 
-// La fonction displayData permet d'afficher le contenu de chaque photographe dans le HTML a l'intérieur de la balise photographer section
+    main(); // Appel de la fonction main.
 
-async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    /**
+     * Création d'une fonction permettant de récupérer les informations des photographes du fichier JSON.
+     * @function [<getPhotographers>]
+     * @returns {Promise} - Promise qui va contenir les informations relatives aux photographes se trouvant dans le fichier JSON.
+     */
+    function getPhotographers() {
+        return fetch('http://localhost:5501/data/photographers.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerFactory(photographer);
-        const cardPhotographer = photographerModel.displayCardPhotographer();
-        console.log(cardPhotographer)
-        photographersSection.insertAdjacentHTML('beforeend', cardPhotographer);
-    });
-};
+    /**
+     * Création d'une fonction pour intégrer/afficher au HTML les données provenant de l'API
+     * @function [<displayData>]
+     * @param {Array} photographers - Tableau de tous les photographes contenant toutes leurs informations.
+     */
+    function displayData(photographers) {
+        const photographersSection = document.querySelector(".photographer_section");
 
+        photographers.forEach((photographer) => {
+            const photographerModel = photographerFactory(photographer); // Appel de la fonction photographerFactory avec en paramètre les informations des photographes.
+            const userCardDOM = photographerModel.getUserCardDOM(); // Appel de la fonction getUser qui va générer les différents photographes
+            photographersSection.appendChild(userCardDOM);
+        });
+    };
 
-
-async function init() {
-    // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
-};
-
-init();
-
-
-////////////////////////////////////////////////////
-
-// class photographe // objet 1 video && objet 2 image
-
-// fetch("../data/photographers.json")
-//     .then((res) => res.json())
-//     .then((data) => console.log(data.photographers[0].portrait));
+})

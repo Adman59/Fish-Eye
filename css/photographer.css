@@ -1,181 +1,36 @@
-.photograph-header {
-    display: grid;
-    grid-template-columns: 1fr; 
-    grid-template-rows: 1fr 1fr 1fr; 
-    /* gap: 32px 70px;  */
-    grid-template-areas: 
-        "photographer-img"
-        "profil-photographer"
-        "photographer-contact"; 
-    justify-items: center;
-    align-items: center;
-    background-color: #FAFAFA;
-    padding: 2rem;
-    margin-bottom: 4rem;
-    border-radius: 0.5rem;
-}
+/* ---- Dans ce fichier vous trouverez le CSS relatifs aux éléments suivants: ----
+    1- Modale de contact
+    2- Page photographe
+    3- Filtre/Dropdown
+    4- Médias
+    5- Bandeau
+    6- Modale carroussel
+    7- Boutons modale carroussel
+*/
 
-.photographer-img { 
-    grid-area: photographer-img;
-}
+/*-----------------------------------------------------------*/
 
-.profil-photographer { 
-    grid-area: profil-photographer;
-    text-align: center;
-}
-
-.profil-photographer-h1 { 
-    font-size: 4rem;
-    color: #D3573C;
-    font-weight: 400;
-}
-
-.photogapher-location {
-    font-size: 1.5rem;
-    color: #901C1C;
-}
-
-.photographer-contact { 
-    grid-area: photographer-contact; 
-}
-
-.photographer-img img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 100%;
-}
-
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/*-----------------------------------------*/
-
-.medias-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 48%);
-    justify-content: space-between;
-    margin-bottom: 2rem;
-}
-
-.media-photographer {
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 2rem;
-}
-
-
-.media-photographer .media .media-thumbnail {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-}
-
-.media-photographer .media-description {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.media-photographer .media-description h2 {
-    font-weight: 400;
-    font-size: 1.5rem;
-    color: #911C1C;
-}
-
-.media-photographer .media-description .like-media {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.media-photographer .media-description .like-numbers {
-    margin: 0 0.5rem;
-    font-weight: 500;
-    font-size: 1.5rem;
-    color: #911C1C;
-}
-
-.media-photographer .media-description .like-icon {
-    color: #911C1C;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.media-photographer .media-description .like-icon:hover,
-.media-photographer .media-description .like-icon[data-like="true"] {
-    color: #D3573C;
-}
-
-/*-----------------------------------------*/
-
-#encart-tarif {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #DB8876;
-    border-radius: 0.5rem 0.5rem 0 0;
-    position: fixed;
-    bottom: 0;
-    right: 5%;
-    width: 320px;
-}
-
-#encart-tarif .photographer-price,
-#encart-tarif .total-like-media {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin: 1rem 1.5rem;
-}
-
-
-/*-----------------------------------------*/
-
+/* 1- Style apporté à la modale de contact */
 #contact_modal {
     display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    background-color: rgba(196, 196, 196, 0.4);
 }
 
 .modal {
+    position: relative;
+    z-index: 3;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 40%;
     display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 35px;
-    margin: 4rem auto;
+    margin: auto;
+    gap: 50px;
 }
 
 .modal header {
-    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
-}
-
-.modal #modal-close-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
 }
 
 .modal header img {
@@ -185,22 +40,22 @@
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    margin-top: 0;
+    text-align: center;
 }
 
-.contact-form {
+form {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.contact-form label {
+form label {
     color: #312E2E;
     font-size: 36px;
 }
 
-.contact-form div {
+form div {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -208,341 +63,310 @@
     margin-bottom: 26px;
 }
 
-.contact-form input {
+form input {
     width: 100%;
     height: 68px;
     border: none;
-    border-radius: 0.5rem;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    font-size: 1.5rem;
+    border-radius: 5px;
 }
 
-.form-field textarea {
+#message {
     width: 100%;
-    border-radius: 0.5rem;
-    border: none;
+    max-width: 100%;
+    height: 200px;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 2- Style général apporté à la page d'un photographe */
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+}
+
+.userPicture {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photographerCard {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.photographerCard h1 {
+    font-size: 64px;
+    font-weight: 400;
+    margin: inherit;
+}
+
+.photographerCard h2 {
+    font-size: 24px;
+    font-weight: 400;
+    margin: inherit;
+    margin-bottom: 10px;
+    color: #901C1C;
+}
+
+.photographerCard p {
+    font-size: 18px;
+    font-weight: 400;
+    margin: inherit;
+}
+
+.photographerCard .tagline {
+    color: #525252;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 3- Style apporté à toute la section portant sur le filtre et son dropdown.*/
+#filter_section {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+#filter {
+    width: 275px !important;
+    text-align: left;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+}
+
+select {
+    appearance: none;
+}
+
+#dropdown__menu {
+    background-color: #901C1C;
+    border-radius: 5px;
+    color: white;
+    width: 275px;
+    margin-top: -6px;
+    display: none;
+}
+
+#dropdown__menu_hidden {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: inherit;
+    margin: inherit;
+    padding-top: 5px;
+}
+
+#dropdown__menu_hidden li {
+    padding-block: 14px;
+    width: 80%;
+    text-align: left;
+    border-top: 2px solid #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#dropdown__menu_hidden li:hover {
+    background-color: #DB8876;
+    color: black;
+}
+
+.select__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#select__container-icon {
+    position: absolute;
+    top: 25px;
+    left: 245px;
+    cursor: pointer;
+    transition: rotate 250ms ease-out;
+}
+
+.isActive {
+    rotate: 180deg;
+}
+
+.not-hidden {
+    display: block !important;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 4- Style apporté aux médias sur la page d'un photographe*/
+.mediaCard {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
+}
+
+.mediaCard article {
+    min-width: 33%;
+}
+
+.mediaCard img {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+    object-position: center;
+}
+
+.descriptionPicture {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    color: #901C1C;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/*-----------------------------------------------------------*/
+
+/* 5- Style apporté au bandeau récapitulatif d'un photographe. */
+.dayPrice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    z-index: 2;
+    background-color: #DB8876;
+    bottom: 0px;
+    right: 35px;
+    border-radius: 5px;
+    width: 20%;
+    height: 79px;
+}
+
+.dayPrice p {
+    font-size: 24px;
+    font-weight: 500;
 }
 
 
-/*-----------------------------------------*/
+/*-----------------------------------------------------------*/
 
-.lightbox {
+/* 6- Style apporté à la modale du carroussel. */
+.modal_childrens {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    top: 10%;
+    margin: auto;
+
+}
+
+#medias_modal {
     display: none;
-    background-color: #fff;
     position: fixed;
+    top: 0;
     left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-.lightbox-frame {
-    width: max-content;
-    /* max-width: 1200px; */
-    max-width: 70vw;
-    /* height: auto; */
-    max-height: 80vh;
-    margin: auto;
-    border-radius: 0.5rem;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.lightbox-frame img,
-.lightbox-frame video {
     width: 100%;
     height: 100%;
-    max-height: 80vh;
-    object-fit: scale-down;
-    border-radius: 0.5rem;
+    background-color: rgba(187, 187, 187, 0.47);
+
 }
 
-.lightbox-frame .media-lightbox {
-    width: fit-content;
-    margin: auto;
-    position: relative;
+.modal-content,
+#carousel {
+    width: 100%;
+    height: 100%;
+    margin: 0px 20px;
 }
 
-.lightbox #lightbox-close-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    margin-left: 0.5rem;
-    background-color: transparent;
-    border: none;
+#carousel img,
+#carousel video {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 
-.lightbox #lightbox-close-btn svg path {
-    fill: #911C1C;
-}
+/*-----------------------------------------------------------*/
 
-.lightbox #previous,
-.lightbox #next {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    color: #911C1C;
-    font-size: 3rem;
-    cursor: pointer;
-}
-
-.lightbox #previous {
-    left: -4rem;
-}
-
-.lightbox #next {
-    right: -4rem;
-}
-
-.hide {
+/* 7- Style apporté à la modale du carroussel et aux boutons previous, next et close. */
+.mediaModal {
+    height: 100%;
     display: none;
 }
 
-.lightbox .title-media {
-    font-size: 1.5rem;
-    color: #911C1C;
+.mediaModal.active {
+    display: block;
 }
 
-/*-----------------------------------------*/
+.mediaModal p {
+    margin: 0;
+    color: #901C1C;
+}
 
-.bloc-filters {
+.modal-content {
     display: flex;
-    align-items: baseline;
+    background-color: white;
+    padding: 25px 40px 40px 40px;
 }
 
-.bloc-filters .selectFilter {
-    font-size: 1.125rem;
-    font-weight: 700;
-    margin-right: 1.5rem;
+.previous-button {
+    background: url('/assets/icons/prev.png') center no-repeat;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    background-size: 20px;
+
 }
 
-.filter-select {
+#left-side {
     display: flex;
-    align-items: baseline;
-    margin-bottom: 4rem;
+    height: 50%;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
-.select {
-    position: relative;
-    overflow: hidden;
-    display: block;
-    width: 100%;
-    max-width: 170px;
-    height: 100%;
-    border-bottom: 0px;
-    border-radius: 0.5rem;
-    font-size: 12px;
-    background-color: #901C1C;
-    color: #fff;
-    z-index: 0;
-  }
+#right-side {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
 
-  .select > i.toggle {
-    position: absolute;
-    z-index: 4;
-    right: 1.5em;
-    top: 1.6em;
-    color: #fff;
-    font-size: 1.125rem;
-  }
-
-  .select .title {
-    position: relative;
-    display: block;
-    padding: 1.5em;
-    background-color: #901C1C;
-    border-top: 1px solid #fff;
+.close-button {
+    background: url('/assets/icons/closemodal.png') center no-repeat;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
     cursor: pointer;
-    font-size: 1.125rem;
-    font-weight: 700;
-  }
+    background-size: 20px;
 
-  .select > input {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: 0;
+}
+
+.next-button {
+    background: url('/assets/icons/next.png') center no-repeat;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
     cursor: pointer;
-  }
-
-  .select > input:checked ~ i.toggle.icon-arrow-down {
-    display: none;
-  }
-
-  .select > input:checked ~ i.toggle.icon-arrow-up {
-    display: block;
-  }
-
-  .select > input:checked ~ div.options label.option .title {
-    display: none!important;
-  }
-
-  .select > input:not(:checked) {
-    z-index: 4;
-  }
-
-  .select > input:not(:checked) ~ label.option > span.title {
-    display: none;
-  }
-
-  .select > input:not(:checked) ~ i.toggle.icon-arrow-up {
-    display: none;
-  }
-
-  .select > input:not(:checked) ~ i.toggle.icon-arrow-down {
-    display: block;
-  }
-
-  .select > input:disabled {
-    cursor: no-drop;
-  }
-
-  .select label.option {
-    display: block;
-    overflow: hidden;
-    z-index: 1;
-    width: 100%;
-    transition: all 1s ease-out;
-  }
-
-  .select label.option > span.title {
-    position: relative;
-    z-index: 2;
-    transition: background .3s ease-out;
-    color: #fff;
-  }
-
-  .select label.option > span.title:hover {
-    background: #D3573C;
-    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, .1);
-  }
-
-  .select label.option > input {
-    display: none;
-}
-
-.select label.option > input:checked ~ span.title {
-    display: block;
-    z-index: 3;
-    top: 0px;
-    background-color: #901C1C;
-    border-top: 0px;
-    box-shadow: none;
-    color: inherit;
-    width: 100%;
-}
-
-.select label.option > input:disabled ~ span.title {
-    background: #f9f9f9!important;
-    color: #aaa;
-}
-
-.select label.option > input:disabled ~ span.title:hover {
-    color: #aaa;
-    background: none;
-    cursor: no-drop;
-}
-
-.select div.options {
-    position: absolute;
-    width: 100%;
-    max-height: 0px;
-    overflow: hidden;
-    z-index: 2;
-    transition: all .5s ease-in-out;
-    background-color: #901C1C;
-    border-top: 1px solid #fff;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-}
-
-.select div.options > label.option {
-    display: block;
-    margin-bottom: 0px;
-}
-
-.select div.options > label.option > span.title {
-    padding: 1em;
-    display: block;
-    color: #fff;
-    font-size: 1.125rem;
-    font-weight: 700;
-    transition: all .3s ease-out;
-    cursor: pointer;
-}
-
-.select div.options > label.option > span.title:hover {
-    background-color: #D3573C;
-}
-
-.select div.options > input:checked ~ label.option > span.title {
-    background-color: #D3573C;
-}
-
-.select div.options > input:not(:checked) ~ label.option > span.title:hover {
-    background-color: #D3573C;
-}
-
-.select div.options > input:checked ~ label.option {
-    display: block;
-    width: 100%;
-    transition: all .3s ease-out;
-}
-
-.select div.options > input:not(:checked) ~ label.option {
-    display: none;
-}
-
-
-/*-----------------------------------------*/
-
-
-@media screen and (min-width: 600px) {
-
-    .photograph-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr; 
-        grid-template-rows: 1fr 1fr; 
-        gap: 32px 32px; 
-        grid-template-areas: 
-            "profil-photographer  photographer-img"
-            "photographer-contact photographer-img"
-    }
-
-    .medias-section {
-        grid-template-columns: repeat(auto-fill, 30%);
-    }
+    background-size: 20px;
 
 }
 
-/*-----------------------------------------*/
-
-
-@media screen and (min-width: 993px) {
-
-    .photograph-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-rows: 1fr; 
-        gap: 32px 32px; 
-        grid-template-areas: 
-            "profil-photographer photographer-contact photographer-img"
-    }
-
-    .profil-photographer { 
-        text-align: left;
-    }
-
-    .medias-section {
-        grid-template-columns: repeat(auto-fill, 23%);
-    }
-
+.next-button img {
+    width: 30px;
+    height: 30px;
 }
+
+/*-----------------------------------------------------------*/
