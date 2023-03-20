@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
      * @returns {Promise} - Promise qui va contenir les informations relatives aux photographes et aux médias, se trouvant dans le fichier JSON.
      */
     function getData() {
-        return fetch('http://localhost:5501/data/photographers.json')
+        return fetch('http://127.0.0.1:5500/fish-eye/data/photographers.json')
             .then(function (response) {
                 return response.json()
             })
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <label class="label" for="select">Trier par</label>
             <div class="select__container">
                 <div id="select__container-icon">
-                    <img src="/assets/icons/dropdown.png" alt="icône flèche permettant de déplier le filtre dropdown" tabindex="0"/>
+                    <i class="fas fa-chevron-down" alt="Next image" role="afficher le média suivant" tabindex="0"></i>
                 </div>
                 <button id="filter" type="button" role="button" aria-haspopup="listbox" tabindex="0" aria-expanded="false">Veuillez selectionner</button>
                 <div id="dropdown__menu">

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* ---- Ce fichier comporte les éléments nécessaire à l'affichage de la modale de formulaire de contact, ainsi qu'à son traitement. ---- */
 
 /**
