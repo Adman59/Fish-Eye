@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
      * @returns {Promise} - Promise qui va contenir les informations relatives aux photographes et aux médias, se trouvant dans le fichier JSON.
      */
     function getData() {
-        return fetch('http://127.0.0.1:5500/fish-eye/data/photographers.json')
+        return fetch('http://127.0.0.1:5501/data/photographers.json')
             .then(function (response) {
                 return response.json()
             })

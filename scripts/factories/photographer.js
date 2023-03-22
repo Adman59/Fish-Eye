@@ -1,10 +1,11 @@
 /**
-    * Initialisation de la fonction photographerFactory, laquelle disposant de trois fonctions internes pour afficher un photographe sur la page d'accueil, le header dans la page d'un photographe ainsi que le nombre total de like dont il dispose. 
-    * @function [<photographerFactory>]
-    * @param {Object} data - Contient les informations relatives à un photographe.
-    * @param {String} picture - Chemin relié à l'image de profil du photographe.
-    * @returns {Object} Retourne un objet avec les propriété suivantes: name, picture, getUserCardDOM, getUser, calculateTotalLikes.
+* Initialisation de la fonction photographerFactory, laquelle disposant de trois fonctions pour afficher un photographe sur la page d'accueil, le header dans la page d'un photographe ainsi que le nombre total de like qu'il possède. 
+* @function [<photographerFactory>]
+* @param {Object} data - Contient les informations relatives à un photographe.
+* @param {String} picture - Chemin relié à l'image de profil du photographe.
+* @returns {Object} Retourne un objet avec les propriété suivantes: name, picture, getUserCardDOM, getUser, calculateTotalLikes.
 */
+
 function photographerFactory(data) {
     const { name, id, portrait, city, country, tagline, price } = data;
 
@@ -15,6 +16,7 @@ function photographerFactory(data) {
         * @function [<getUserCardDOM>]
         * @returns {HTMLArticleElement} Retourne un élément HTML "article".
     */
+
     function getUserCardDOM() {
         const article = document.createElement('article');
         article.insertAdjacentHTML(
@@ -38,6 +40,7 @@ function photographerFactory(data) {
         * @function [<getUser>]
         * @returns {HTMLArticleElement} Retourne un élément HTML "section".
     */
+
     function getUser() {
         const photographerCard = document.createElement('section');
 
@@ -53,7 +56,7 @@ function photographerFactory(data) {
                 <button class="contact_button">Contactez-moi</button>
                 <img src="${picture}" alt="${name}" class="userPicture" tabindex="0">
                 <div class="dayPrice">
-                <div class="likes"><p tabindex="0" id="totalLikes">X</p><img class="heart2" src="assets/icons/Heart2.png" alt="icône coeur symbolisant le total de like du photographe" tabindex="0"/></div>
+                    <div class="likes"><p tabindex="0" id="totalLikes">X</p><img class="heart2" src="assets/icons/Heart2.png" alt="icône coeur symbolisant le total de like du photographe" tabindex="0"/></div>
                 <p tabindex="0">${price}€/jour</p>
                 </div>
             `

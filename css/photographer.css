@@ -1,34 +1,25 @@
-/* ---- Dans ce fichier vous trouverez le CSS relatifs aux éléments suivants: ----
-    1- Modale de contact
-    2- Page photographe
-    3- Filtre/Dropdown
-    4- Médias
-    5- Bandeau
-    6- Modale carroussel
-    7- Boutons modale carroussel
-*/
-
-/*-----------------------------------------------------------*/
-
-/* 1- Style apporté à la modale de contact */
 #contact_modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(196, 196, 196, 0.4);
 }
 
 .modal {
-    position: relative;
-    z-index: 3;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     background-color: #DB8876;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
+    width: 50%;
     padding: 35px;
-    margin: auto;
-    gap: 50px;
+    margin: 4rem auto;
 }
 
 .modal header {
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 }
@@ -38,9 +29,10 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: left;
+    margin: 0;
 }
 
 form {
@@ -53,6 +45,8 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
 }
 
 form div {
@@ -67,22 +61,48 @@ form input {
     width: 100%;
     height: 68px;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #message {
     width: 100%;
-    max-width: 100%;
     height: 200px;
+    border-radius: 0.5rem;
+    border: none;
 }
 
 /*-----------------------------------------------------------*/
 
-/* 2- Style général apporté à la page d'un photographe */
-.photograph-header {
+
+.photographerCard {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /* gap: 32px 70px;  */
+    grid-template-areas:
+        "userPicture"
+        "informations"
+        "contactButton";
+    justify-items: center;
+    align-items: center;
     background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+    padding: 4rem 2rem;
+    margin-bottom: 4rem;
+    border-radius: 0.5rem;
+}
+
+.photographerCard h1 {
+    color: #DB8876;
+}
+
+.photograph-header .contact_button {
+    grid-area: contactButton;
+}
+
+.informations {
+    grid-area: informations;
+    text-align: center;
 }
 
 .userPicture {
@@ -90,14 +110,7 @@ form input {
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
-}
-
-.photographerCard {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 100%;
-    margin-bottom: 10px;
+    grid-area: userPicture;
 }
 
 .photographerCard h1 {
@@ -130,8 +143,9 @@ form input {
 #filter_section {
     position: absolute;
     display: flex;
-    gap: 10px;
+    gap: 2rem;
     align-items: baseline;
+    margin-bottom: 2rem;
 }
 
 #filter {
@@ -151,9 +165,8 @@ select {
 
 #dropdown__menu {
     background-color: #901C1C;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     color: white;
-    width: 275px;
     margin-top: -6px;
     display: none;
 }
@@ -166,12 +179,12 @@ select {
     align-items: center;
     padding: inherit;
     margin: inherit;
-    padding-top: 5px;
+    padding-top: 0.875rem;
 }
 
 #dropdown__menu_hidden li {
-    padding-block: 14px;
-    width: 80%;
+    width: -webkit-fill-available;
+    padding: 1.5rem;
     text-align: left;
     border-top: 2px solid #fff;
     cursor: pointer;
@@ -191,8 +204,9 @@ select {
 
 #select__container-icon {
     position: absolute;
+    color: #fff;
     top: 25px;
-    left: 245px;
+    right: 1rem;
     cursor: pointer;
     transition: rotate 250ms ease-out;
 }
@@ -207,21 +221,27 @@ select {
 
 /*-----------------------------------------------------------*/
 
-/* 4- Style apporté aux médias sur la page d'un photographe*/
+
 .mediaCard {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 48%);
+    justify-content: space-between;
+    margin-top: 12rem;
+    margin-bottom: 2rem;
 }
 
 .mediaCard article {
-    min-width: 33%;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 2rem;
 }
 
-.mediaCard img {
-    width: 350px;
+.mediaCard img,
+.mediaCard video {
+    width: 100%;
     height: 300px;
     object-fit: cover;
+    border-radius: 0.5rem;
     cursor: pointer;
     object-position: center;
 }
@@ -229,10 +249,7 @@ select {
 .descriptionPicture {
     display: flex;
     justify-content: space-between;
-    width: 350px;
     color: #901C1C;
-    margin-top: -10px;
-    margin-bottom: 10px;
 }
 
 /*-----------------------------------------------------------*/
@@ -242,44 +259,46 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    position: fixed;
-    z-index: 2;
     background-color: #DB8876;
-    bottom: 0px;
-    right: 35px;
-    border-radius: 5px;
-    width: 20%;
-    height: 79px;
+    border-radius: 0.5rem 0.5rem 0 0;
+    position: fixed;
+    bottom: 0;
+    right: 5%;
+    width: 264px;
+    padding: 1rem 1.5rem;
 }
 
 .dayPrice p {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 
 
 /*-----------------------------------------------------------*/
 
-/* 6- Style apporté à la modale du carroussel. */
-.modal_childrens {
-    width: 50%;
-    height: 75%;
-    position: relative;
-    top: 10%;
-    margin: auto;
-
-}
 
 #medias_modal {
     display: none;
     position: fixed;
-    top: 0;
+    z-index: 1;
     left: 0;
-    width: 100%;
+    top: 0;
     height: 100%;
-    background-color: rgba(187, 187, 187, 0.47);
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 1);
+}
 
+.modal_childrens {
+    width: 60%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
 
 .modal-content,
@@ -309,14 +328,15 @@ select {
 }
 
 .mediaModal p {
-    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
     color: #901C1C;
 }
 
 .modal-content {
     display: flex;
+    align-items: center;
     background-color: white;
-    padding: 25px 40px 40px 40px;
 }
 
 .previous-button {
@@ -345,13 +365,17 @@ select {
 }
 
 .close-button {
-    background: url('/assets/icons/closemodal.png') center no-repeat;
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
     cursor: pointer;
-    background-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 0.5rem;
+    background-color: transparent;
+    border: none;
+}
 
+.close-button svg path {
+    fill: #911C1C;
 }
 
 .next-button {
@@ -370,3 +394,70 @@ select {
 }
 
 /*-----------------------------------------------------------*/
+
+.contact_button,
+.send_button,
+#filter {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 1.5rem 1rem;
+    border: 2px solid #901C1C;
+    background-color: #901C1C;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.contact_button:hover,
+.contact_button:focus,
+.send_button:hover {
+    background-color: #DB8876;
+    border: 2px solid #DB8876;
+    color: black;
+}
+
+.send_button:hover {
+    border: 2px solid white;
+}
+
+/*-----------------------------------------------------------*/
+
+@media screen and (min-width: 600px) {
+
+    .photographerCard {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 32px 0;
+        grid-template-areas:
+            "informations  userPicture"
+            "contactButton userPicture"
+    }
+
+    .mediaCard {
+        grid-template-columns: repeat(auto-fill, 30%);
+    }
+
+}
+
+@media screen and (min-width: 993px) {
+
+    .photographerCard {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 32px 32px;
+        grid-template-areas:
+            "informations contactButton userPicture"
+    }
+
+    .informations {
+        text-align: left;
+    }
+
+    .mediaCard {
+        grid-template-columns: repeat(auto-fill, 23%);
+    }
+
+}
