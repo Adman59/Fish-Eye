@@ -290,7 +290,7 @@ select {
 }
 
 .modal_childrens {
-    width: 60%;
+    width: 60vh;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
